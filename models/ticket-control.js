@@ -58,12 +58,12 @@ class TicketControl {
     }
 
     atenderTicket( escritorio ) {
-
+        // no tenemos tickets
         if( this.tickets.length === 0 ) {
             return null;
         }
 
-        const ticket = this.tickets[0]; //  this.tickets.shift(); //remueve, retorna y borra
+        const ticket = this.tickets.shift(); //remueve, retorna y borra
         ticket.escritorio = escritorio;
 
         this.ultimos4.unshift( ticket ); // añadir un elemento al inicio
@@ -73,7 +73,7 @@ class TicketControl {
        }
 
        this.guardarDB();
-       return tickets;
+       return ticket;
     }
 
 }
