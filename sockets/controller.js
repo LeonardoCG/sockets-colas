@@ -6,12 +6,15 @@ const socketController = (socket) => {
 
     socket.on('disconnect', () => {});
 
-    socket.on('enviar-mensaje', ( payload, callback ) => {
-        
-        const id = 123456789;
-        callback( id );
+    socket.emit('ultimo-ticket', ticketControl.ultimo); // emite el ultimo ticket
 
-        socket.broadcast.emit('enviar-mensaje', payload );
+    socket.on('siguiente-ticket', ( payload, callback ) => {
+        
+        const siguiente = ticketControl.siguiente();
+        callback( siguiente );
+
+        // TODO: Notificar que hay un new ticket pendiente asignar
+
 
     })
 
