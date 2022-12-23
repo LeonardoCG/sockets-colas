@@ -33,7 +33,8 @@ socket.on('disconnect', () => {
 
 // escuchar y muestra el ultimo en pantalla
 socket.on('ultimo-ticket', ( ultimo ) => {
-    //lblNuevoTicket.innerHTML = 'Ticket: ' +  ultimo;
+    lblPendientes.innerText = ultimo;
+    
 });
 
 
@@ -41,13 +42,16 @@ socket.on('ultimo-ticket', ( ultimo ) => {
 btnAtender.addEventListener( 'click', () => {
 
     
-    socket.emit( 'atender-ticket', { escritorio }, ({ ok, ticket, msg }) => {
+    socket.emit( 'atender-ticket', { escritorio }, ({ ok, ticket, msg } ) => {
         
         if( !ok ) {
-            lblTicket.innerText = 'Nadie' 
+            lblTicket.innerText = 'Nadie';
+            lblPendientes.innerText = '0';
             return divAlerta.style.display = ''; 
+
         }
         
         lblTicket.innerText = 'Ticket: ' + ticket.numero;
+        
     });
 });

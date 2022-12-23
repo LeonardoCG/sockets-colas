@@ -57,6 +57,15 @@ class TicketControl {
         return 'Ticket: ' + ticket.numero;
     }
 
+    ultimoSiguiente() {
+        this.ultimo += 1;
+        const ticket = new Ticket( this.ultimo, null );
+        this.tickets.push( ticket ); // se inserta en el array de tickets
+
+        this.guardarDB();
+        return 'Ticket: ' + ticket.numero;
+    }
+
     atenderTicket( escritorio ) {
         // no tenemos tickets
         if( this.tickets.length === 0 ) {
@@ -71,6 +80,8 @@ class TicketControl {
         if( this.ultimos4.length > 4 ) {
             this.ultimos4.splice(-1,1); // corta el ultimo
        }
+
+
 
        this.guardarDB();
        return ticket;
