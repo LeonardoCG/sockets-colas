@@ -17,13 +17,14 @@ socket.on('ultimo-ticket', ( ultimo ) => {
     lblNuevoTicket.innerHTML = 'Ticket: ' +  ultimo;
 });
 
-
 // crea y emite el ticket en pantalla
 btnCrear.addEventListener( 'click', () => {
 
     socket.emit( 'siguiente-ticket', null, ( ticket ) => {
         lblNuevoTicket.innerText = ticket;
     });
+
+    
 });
 
 

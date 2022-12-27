@@ -32,10 +32,17 @@ socket.on('disconnect', () => {
 });
 
 // escuchar y muestra el ultimo en pantalla
-socket.on('ultimo-ticket', ( ultimo ) => {
-    lblPendientes.innerText = ultimo;
+socket.on('tickets-pendientes',( pendientes ) => {
+   
+    if( pendientes === 0 ) {
+        lblPendientes.display = 'none';
+    }else {
+        lblPendientes.display = ' ';
+        lblPendientes.innerText = pendientes;
+    }
     
 });
+ 
 
 
 // crea y emite el ticket en pantalla
